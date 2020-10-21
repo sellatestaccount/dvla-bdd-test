@@ -1,4 +1,4 @@
-package com.dvla.testframework.model;
+package com.dvla.testframework.pageobject.pageobjectimpl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,11 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.dvla.testframework.pageobject.model.VehicleEnquiryServicePage;
+
 /**
  * Vehicle Enquiry page object
  */
 @Component
-public class VehicleEnquiryServicePage {
+public class VehicleEnquiryServicePageImpl implements VehicleEnquiryServicePage {
 
     @FindBy(id = "wizard_vehicle_enquiry_capture_vrn_vrn")
     private WebElement registrationNumberInput;
@@ -28,23 +30,27 @@ public class VehicleEnquiryServicePage {
     private final WebDriver driver;
 
     @Autowired
-    public VehicleEnquiryServicePage(WebDriver driver) {
+    public VehicleEnquiryServicePageImpl(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
+    @Override
     public void enterVehicleRegistrationNumber(String registrationNumber) {
         registrationNumberInput.sendKeys(registrationNumber);
     }
 
+    @Override
     public void submitRegistrationNumber() {
         submitRegistrationNumberButton.click();
     }
 
+    @Override
     public void confirmVehicle(String confirmation) {
         confirmVehicleOptionYes.click();
     }
 
+    @Override
     public void submitVehicleConfirmation() {
         submitVehicleConfirmationButton.click();
     }

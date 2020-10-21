@@ -1,4 +1,4 @@
-package com.dvla.testframework.model;
+package com.dvla.testframework.pageobject.pageobjectimpl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * Get Vehicle Information page object
  */
 @Component
-public class GetVehicleInformationHomePage {
+public class GetVehicleInformationHomePageImpl implements GetVehicleInformationHomePage {
     @Value("${getVehicleInformationHome.url}")
     private String getVehicleInformationHomePageUrl;
 
@@ -22,15 +22,17 @@ public class GetVehicleInformationHomePage {
     private WebElement startNowButton;
 
     @Autowired
-    public GetVehicleInformationHomePage(WebDriver driver) {
+    public GetVehicleInformationHomePageImpl(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
+    @Override
     public void load() {
         driver.get(getVehicleInformationHomePageUrl);
     }
 
+    @Override
     public void startVehicleDetailsSearch() {
         startNowButton.click();
     }
