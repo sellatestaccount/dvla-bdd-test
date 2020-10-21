@@ -1,6 +1,10 @@
 package com.dvla.testframework.config;
 
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,17 +21,24 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class WebDriverConfig {
 
+    private WebDriver driver;
+    private Scenario scenario;
     @Bean
     public WebDriver getDriver() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
     }
 
+    @AfterStep
+    public void takeScreenShotAfterEveryStep() {
+        byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", "Result");
+    }
     @After
-    public void quitDriver(WebDriver driver) {
+    public void quitDriver() {
         driver.close();
         driver.quit();
     }

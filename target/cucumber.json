@@ -1,0 +1,100 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2020-10-21T19:50:27.649Z",
+        "line": 3,
+        "name": "Get vehicle information successfully using vehicle registration number",
+        "description": "",
+        "id": "get-vehicle-information-from-dvla;get-vehicle-information-successfully-using-vehicle-registration-number",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 2809310000,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "I am on vehicle information from DVLA page",
+            "match": {
+              "location": "com.dvla.testframework.stepdefinitions.GetVehicleInformationSteps.iAmOnVehicleInformationFromDVLAPage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1384130000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "I enter the vehicle registration number \"LV10FZD\" on vehicle enquiry service",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"LV10FZD\"",
+                  "offset": 40
+                }
+              ],
+              "location": "com.dvla.testframework.stepdefinitions.GetVehicleInformationSteps.iEnterTheVehicleRegistrationNumber(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 3073727000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I select \"yes\" to confirm vehicle",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"yes\"",
+                  "offset": 9
+                }
+              ],
+              "location": "com.dvla.testframework.stepdefinitions.GetVehicleInformationSteps.iSelectToConfirmVehicle(java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1444109000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "the vehicle details page should contain the following information",
+            "match": {
+              "location": "com.dvla.testframework.stepdefinitions.GetVehicleInformationSteps.theVehicleDetailsPageShouldContainTheFollowingInformation(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "vehicleRegistrationNumber",
+                  "vehicleMake",
+                  "vehicleColour"
+                ]
+              },
+              {
+                "cells": [
+                  "LV10 FZD",
+                  "NISSAN",
+                  "RED"
+                ]
+              }
+            ],
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Get vehicle Information from DVLA",
+    "description": "",
+    "id": "get-vehicle-information-from-dvla",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features/GetVehicleInformationFromDVLA.feature",
+    "tags": []
+  }
+]

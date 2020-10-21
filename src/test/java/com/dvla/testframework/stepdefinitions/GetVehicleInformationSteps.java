@@ -1,14 +1,15 @@
 package com.dvla.testframework.stepdefinitions;
 
 import com.dvla.testframework.data.VehicleDetails;
-import com.dvla.testframework.pageobject.pageobjectimpl.GetVehicleDetailsPageImpl;
-import com.dvla.testframework.pageobject.pageobjectimpl.GetVehicleInformationHomePageImpl;
-import com.dvla.testframework.pageobject.pageobjectimpl.VehicleEnquiryServicePage;
+import com.dvla.testframework.pageobject.model.GetVehicleDetailsPage;
+import com.dvla.testframework.pageobject.model.GetVehicleInformationHomePage;
+import com.dvla.testframework.pageobject.model.VehicleEnquiryServicePage;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
@@ -19,6 +20,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static com.dvla.testframework.util.BddHelper.createTable;
 
 public class GetVehicleInformationSteps {
+
+    Logger log =Logger.getLogger(GetVehicleInformationSteps.class);
     private GetVehicleInformationHomePage getVehicleInformationHomePage;
     private VehicleEnquiryServicePage vehicleEnquiryServicePage;
     private GetVehicleDetailsPage getVehicleDetailsPage;
@@ -34,31 +37,20 @@ public class GetVehicleInformationSteps {
 
     @Given("I am on vehicle information from DVLA page")
     public void iAmOnVehicleInformationFromDVLAPage() {
+        log.info("Home page launched");
         getVehicleInformationHomePage.load();
-    }
-
-    @And("I click Startnow")
-    public void iClickStartnow() {
         getVehicleInformationHomePage.startVehicleDetailsSearch();
     }
 
     @When("I enter the vehicle registration number {string} on vehicle enquiry service")
     public void iEnterTheVehicleRegistrationNumber(String registrationNumber) {
         vehicleEnquiryServicePage.enterVehicleRegistrationNumber(registrationNumber);
-    }
-
-    @And("I click Continue")
-    public void iClickContinue() {
         vehicleEnquiryServicePage.submitRegistrationNumber();
     }
 
     @And("I select {string} to confirm vehicle")
     public void iSelectToConfirmVehicle(String confirmation) {
         vehicleEnquiryServicePage.confirmVehicle(confirmation);
-    }
-
-    @And("I click Continue to confirm vehicle")
-    public void iClickContinueToConfirmVehicle() {
         vehicleEnquiryServicePage.submitVehicleConfirmation();
     }
 

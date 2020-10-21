@@ -1,6 +1,7 @@
 package com.dvla.testframework.pageobject.pageobjectimpl;
 
 import com.dvla.testframework.data.VehicleDetails;
+import com.dvla.testframework.pageobject.model.GetVehicleDetailsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
